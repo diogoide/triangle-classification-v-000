@@ -14,7 +14,7 @@ class Triangle
         raise TriangleError
       rescue TriangleError => error
         puts error.message
-      end 
+      end
     elsif sides.uniq.length == 1
       :equilateral
     elsif sides.uniq.length == 2
@@ -25,7 +25,7 @@ class Triangle
   end
 
   def invalid_triangle?
-    sides.any? {|side| side <= 0} || sides[0] + sides[1] <= sides [2]
+    sides.any? {|side| side <= 0} || sides[0] + sides[1] <= sides[2]
   end
 end
 
