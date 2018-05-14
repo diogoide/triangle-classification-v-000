@@ -1,8 +1,8 @@
 class Triangle
   attr_accessor :hypotenuse, :adjacent, :opposite, :sides
 
-  def initialize(hipotenuse, adjacent, opposite)
-    @hipotenuse = hipotenuse
+  def initialize(hypotenuse, adjacent, opposite)
+    @hypotenuse = hypotenuse
     @adjacent = adjacent
     @opposite = opposite
     @sides = [hypotenuse, adjacent, opposite].sort
