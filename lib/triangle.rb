@@ -1,19 +1,33 @@
 class Triangle
-  attr_accessor :side1_length, :side2_length, :side3_length
+  attr_accessor :hypotenuse, :adjacent, :opposite, :sides
 
-  def initialize(side1_length,side2_length,side3_length)
-    @side1_length = side1_length
-    @side2_length = side2_length
-    @side3_length = side3_length
+  def initialize(hipotenuse, adjacent, opposite)
+    @hipotenuse = hipotenuse
+    @adjacent = adjacent
+    @opposite = opposite
+    @sides = [hypotenuse, adjacent, opposite].sort
   end
 
   def kind
-    "equilateral" if @side1_length != 0 && @side1_length == @side2_length && @side1_length == @side3_length
-    "isosceles" if  @side1_length != 0 && @side2_length != 0 && @side3_length != 0 && @side1_length == @side2_length || @side1_length == @side3_length || @side2_length == @side3_length
-    "scalene" if @side1_length != 0 && @side2_length != 0 && @side3_length != 0 && @side1_length != @side2_length && @side1_length != @side3_length && @side2_length != @side3_length
-          end
-        end
-      end
+    if invalid_triangle?
+      raise TriangleError
+    elsif sides.uniq.length == 1
+      :equilateral
+    elsif sides.uniq.length == 2
+      :isosceles
+    else
+      :scalene
+  end
+
+  def invalid_triangle?
+    sides.any? {|side| side <= 0} || sides[0] + sides[1] <= sides [2]
+  end
+end
+
+class TriangleError < StandardError
+
+  def message
+    "That's no triangle. OF that I'm sure."
   end
 
 end
